@@ -10,6 +10,116 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/App.tsx":
+/*!*********************!*\
+  !*** ./src/App.tsx ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   PlaylistCtx: () => (/* binding */ PlaylistCtx),\n/* harmony export */   \"default\": () => (/* binding */ App)\n/* harmony export */ });\n/* harmony import */ var _components_Directory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Directory */ \"./src/components/Directory.tsx\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_PlayList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/PlayList */ \"./src/components/PlayList.tsx\");\n/* harmony import */ var _components_PlayBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/PlayBar */ \"./src/components/PlayBar.tsx\");\n/// <reference path=\"components/Direct.d.ts\" />\n\n\n\n\nconst PlaylistCtx = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createContext({\n  playlist: [],\n  curdir: \"\",\n  setCurdir: () => {},\n  setPlaylist: () => {},\n  playAll: () => {},\n  startPlay: () => {}\n});\nfunction App() {\n  const [playlist, setPlaylist] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);\n  const [musicName, setMusicName] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(\"\");\n  const [curdir, setCurdir] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(\"\");\n  const [musicSrc, setMusicSrc] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(\"\");\n  const [playStart, setPlayStart] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);\n  const [musicCoverSrc, setMusicCoverSrc] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(\"../images/music_cover.jpg\");\n  function playAll(dir) {\n    setCurdir(dir);\n    playlist.forEach(song => startPlay(song));\n  }\n  async function startPlay(song, musicCoverSrc) {\n    setMusicName(song);\n    const songPath = curdir.endsWith('/') ? curdir + song : curdir + '/' + song;\n    const readFileResp = await fileUtil.read(songPath);\n    if (readFileResp.success) {\n      setMusicSrc(URL.createObjectURL(readFileResp.payload));\n      if (musicCoverSrc) setMusicCoverSrc(musicCoverSrc);\n      setPlayStart(true);\n    } else {\n      console.error(readFileResp.message);\n    }\n  }\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(\"div\", {\n    style: {\n      margin: \"auto auto\",\n      width: \"80vw\",\n      display: 'flex',\n      flexDirection: 'column',\n      alignItems: 'center'\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(PlaylistCtx.Provider, {\n    value: {\n      curdir,\n      setCurdir,\n      playlist,\n      setPlaylist,\n      playAll,\n      startPlay\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_components_Directory__WEBPACK_IMPORTED_MODULE_0__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_components_PlayList__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_components_PlayBar__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n    musicName: musicName,\n    musicSrc: musicSrc,\n    playStart: playStart,\n    musicCoverSrc: musicCoverSrc\n  })));\n}\n\n//# sourceURL=webpack://local-music-player/./src/App.tsx?");
+
+/***/ }),
+
+/***/ "./src/React.tsx":
+/*!***********************!*\
+  !*** ./src/React.tsx ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ \"./node_modules/react-dom/client.js\");\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ \"./src/App.tsx\");\n/* harmony import */ var _public_css_index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../public/css/index.css */ \"./public/css/index.css\");\n\n\n\n\n\n// (window as any).global = window\n// var global = window\nconst root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById('app'));\nroot.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_App__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null)));\n\n//# sourceURL=webpack://local-music-player/./src/React.tsx?");
+
+/***/ }),
+
+/***/ "./src/components/DirItem.tsx":
+/*!************************************!*\
+  !*** ./src/components/DirItem.tsx ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ DirItem)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../App */ \"./src/App.tsx\");\n\n\nconst musicFileSuffixs = [\".flac\", \".mp3\", \".wmc\", \".wav\"];\nfunction DirItem(prop) {\n  const [selected, setSelected] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n  const {\n    setCurdir,\n    playlist,\n    setPlaylist,\n    playAll\n  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_App__WEBPACK_IMPORTED_MODULE_1__.PlaylistCtx);\n  const onDelete = async () => {\n    const deleteResp = await pathsUtil.delete([prop.dir]);\n    if (deleteResp.success) {\n      prop.updateDirList();\n    } else {\n      console.error(deleteResp.message);\n    }\n  };\n  function onRead() {\n    pathsUtil.open(prop.dir).then(res => {\n      if (res.success) {\n        setCurdir(prop.dir);\n        setPlaylist(res.payload.filter(filename => musicFileSuffixs.some(suffix => filename.endsWith(suffix))));\n      } else {\n        console.error(res.message);\n      }\n    });\n  }\n  function onPlay() {\n    playAll(prop.dir);\n  }\n  const buttonStyle = {\n    fontSize: \"1rem\",\n    visibility: selected ? 'visible' : 'hidden',\n    width: '100%',\n    display: 'flex',\n    position: 'absolute',\n    bottom: 0,\n    justifyContent: 'flex-end',\n    alignItems: 'center'\n  };\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    onMouseEnter: () => setSelected(true),\n    onMouseDown: () => setSelected(true),\n    onMouseLeave: () => setSelected(false),\n    style: {\n      position: 'relative',\n      backgroundColor: selected ? 'gold' : 'transparent'\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", null, prop.dir), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", {\n    style: buttonStyle\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"svg\", {\n    className: \"cursor\",\n    style: {\n      height: '1rem',\n      width: '1rem',\n      margin: '0 auto -0.1rem 2vw'\n    },\n    viewBox: \"10 6 10 12\",\n    onClick: onPlay\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"path\", {\n    fill: \"limegreen\",\n    d: \"M8 5v14l11-7z\"\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"button\", {\n    className: \"cursor\",\n    style: {\n      fontSize: \"inherit\",\n      color: 'blue'\n    },\n    onClick: onRead\n  }, \"Read\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"button\", {\n    className: \"cursor\",\n    style: {\n      fontSize: \"inherit\",\n      color: 'red'\n    },\n    onClick: onDelete\n  }, \"x\")));\n}\n\n//# sourceURL=webpack://local-music-player/./src/components/DirItem.tsx?");
+
+/***/ }),
+
+/***/ "./src/components/Directory.tsx":
+/*!**************************************!*\
+  !*** ./src/components/Directory.tsx ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Directory)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _DirItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DirItem */ \"./src/components/DirItem.tsx\");\n/// <reference path=\"Direct.d.ts\" />\n\n\n\nfunction Directory() {\n  const [dirList, setDirList] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    pathsUtil.read().then(response => {\n      if (response.success) {\n        // console.log(response.payload);\n        setDirList(response.payload);\n      } else {\n        alert(response.message);\n      }\n    }, err => {\n      alert(err);\n    });\n  }, []);\n  const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);\n  async function addDirectory() {\n    if (!inputRef.current?.value) {\n      alert(\"Input cannot be null!\");\n      return;\n    }\n    const response1 = await pathsUtil.add(inputRef.current.value);\n    if (response1.success) {\n      const response2 = await pathsUtil.read();\n      if (response2.success) {\n        setDirList(response2.payload);\n      } else {\n        alert(response2.message);\n      }\n    } else {\n      alert(response1.message);\n    }\n    inputRef.current.value = '';\n  }\n  const updateDirList = () => {\n    pathsUtil.read().then(resp => {\n      if (resp.success) {\n        setDirList(resp.payload);\n      } else {\n        alert(resp.message);\n      }\n    });\n  };\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    style: {\n      width: \"inherit\",\n      display: 'flex',\n      flexDirection: 'column',\n      alignItems: 'center'\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    style: {\n      fontSize: '1.3rem',\n      alignSelf: 'start'\n    }\n  }, \"Directories list:\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    style: {\n      width: 'inherit',\n      display: 'flex',\n      flexDirection: 'column',\n      border: `${dirList.length ? 1 : 0}px solid gray`\n    }\n  }, dirList.map((dir, idx) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_DirItem__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    key: idx,\n    dir: dir,\n    updateDirList: updateDirList\n  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    style: {\n      fontSize: \"1rem\",\n      width: 'inherit',\n      display: 'flex',\n      marginTop: '1px'\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    style: {\n      fontSize: \"inherit\",\n      flexGrow: 1\n    },\n    ref: inputRef\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", {\n    style: {\n      display: 'inline-block',\n      width: '1px'\n    }\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"button\", {\n    className: \"cursor\",\n    style: {\n      fontSize: \"inherit\",\n      color: 'black',\n      backgroundColor: 'goldenrod'\n    },\n    onClick: addDirectory\n  }, \"Add to directory list\")));\n}\n\n//# sourceURL=webpack://local-music-player/./src/components/Directory.tsx?");
+
+/***/ }),
+
+/***/ "./src/components/PlayBar.tsx":
+/*!************************************!*\
+  !*** ./src/components/PlayBar.tsx ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ PlayBar)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nconst playbarStyle = {\n  width: '96vw',\n  height: \"13vw\",\n  backgroundColor: \"rgba(218,165,32, 0.8)\",\n  position: 'fixed',\n  bottom: 0,\n  borderRadius: '5vw 5vw 0 0',\n  display: 'flex',\n  alignItems: 'center',\n  padding: '2vw',\n  justifyContent: 'space-between'\n};\nconst soundIconStyle = {\n  fontSize: '1rem',\n  width: '1.4rem',\n  fill: 'green'\n};\nvar audio;\nfunction PlayBar(props) {\n  const {\n    musicName,\n    musicSrc,\n    playStart,\n    musicCoverSrc\n  } = props;\n  const [currTime, setCurrTime] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),\n    [currPercent, setCurrPercent] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),\n    [currMin, setCurrMin] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('00'),\n    [currSec, setCurrSec] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('00'),\n    [duration, setDuration] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),\n    [durationMin, setDurationMin] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('00'),\n    [durationSec, setDurationSec] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('00'),\n    [playing, setPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),\n    [showVol, setShowVol] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),\n    [volume, setVolume] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(50),\n    [muted, setMuted] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),\n    [showPause, setShowPause] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    audio = new Audio();\n  }, []);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    audio.src = musicSrc;\n    audio.onloadeddata = () => {\n      const {\n        duration\n      } = audio;\n      audio.volume = volume / 100;\n      setDuration(duration);\n      const dm = Math.floor(duration / 60),\n        ds = Math.round(duration % 60);\n      setDurationMin(dm < 10 ? '0' + dm : '' + dm);\n      setDurationSec(ds < 10 ? '0' + ds : '' + ds);\n      setCurrTime(0);\n      setCurrPercent(0);\n      if (playStart) {\n        setPlaying(true);\n        audio.play();\n        setInterval(() => {\n          const {\n            currentTime\n          } = audio;\n          setCurrTime(currentTime);\n          const cm = Math.floor(currentTime / 60),\n            cs = Math.round(currentTime % 60);\n          setCurrMin(cm < 10 ? '0' + cm : '' + cm);\n          setCurrSec(cs < 10 ? '0' + cs : '' + cs);\n          setCurrPercent(currentTime / duration * 100);\n        }, 200);\n      }\n    };\n    audio.onended = () => {\n      setPlaying(false);\n    };\n  }, [musicSrc]);\n  const rangeStyle = {\n    appearance: \"none\",\n    /*清除系统默认样式*/\n    width: \"60vw\",\n    background: \"-webkit-linear-gradient(limegreen, limegreen) no-repeat, #ddd\",\n    /*设置左边颜色为#61bd12，右边颜色为#ddd*/\n    backgroundSize: `${currPercent}%, 100%`,\n    /*设置左右宽度比例*/\n    height: \"1vw\" /*横条的高度*/\n  };\n\n  const volRangeStyle = {\n    appearance: 'none',\n    rotate: \"-90deg\",\n    visibility: showVol ? \"visible\" : \"hidden\",\n    background: \"-webkit-linear-gradient(#61bd12, #61bd12) no-repeat, #ddd\",\n    /*设置左边颜色为#61bd12，右边颜色为#ddd*/\n    backgroundSize: `${volume}%, 100%`,\n    height: \"0.5vw\",\n    width: '12vw',\n    position: 'absolute',\n    left: '-1vw',\n    top: '6.5vw'\n  };\n  function changeVolume(event) {\n    event.preventDefault();\n    if (audio) {\n      const vol = Number(event.target.value);\n      audio.volume = vol / 100;\n      setVolume(vol);\n    }\n  }\n  function changeProgress(event) {\n    event.preventDefault();\n    if (audio) {\n      const curTime = Number(event.target.value); // 实际时间 * 100\n      audio.currentTime = curTime / 100;\n      const {\n        currentTime\n      } = audio;\n      setCurrTime(currentTime);\n      const cm = Math.floor(currentTime / 60),\n        cs = Math.round(currentTime % 60);\n      setCurrMin(cm < 10 ? '0' + cm : '' + cm);\n      setCurrSec(cs < 10 ? '0' + cs : '' + cs);\n      setCurrPercent(currentTime / duration * 100);\n    }\n  }\n  function changePlaying(event) {\n    event.preventDefault();\n    if (audio) {\n      if (playing) {\n        audio.pause();\n        setPlaying(false);\n      } else {\n        audio.play();\n        setPlaying(true);\n      }\n    }\n  }\n  function changeMuted(event) {\n    event.preventDefault();\n    if (audio) {\n      audio.muted = !muted;\n      setMuted(!muted);\n    }\n  }\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    style: playbarStyle\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    style: {\n      width: '13vw',\n      height: '13vw',\n      position: 'relative'\n    },\n    onMouseOver: () => {\n      console.log('ff'), setShowPause(true);\n    },\n    onMouseLeave: () => setShowPause(false)\n  }, showPause ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"svg\", {\n    className: \"cursor\",\n    style: {\n      position: 'absolute',\n      height: '1.5rem',\n      width: '1.5rem',\n      left: '5vw',\n      top: '4.5vw'\n    },\n    viewBox: \"10 6 10 12\",\n    onClick: changePlaying\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"path\", {\n    fill: \"limegreen\",\n    d: \"M8 5v14l11-7z\"\n  })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"img\", {\n    className: playing ? 'rotate-img' : '',\n    src: musicCoverSrc,\n    style: {\n      width: '13vw',\n      height: '13vw',\n      borderRadius: '6.5vw'\n    }\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    id: \"bar\",\n    style: {\n      display: 'flex',\n      flexDirection: 'column',\n      justifyContent: 'space-between'\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", {\n    style: {\n      fontSize: '0.9rem',\n      width: '60vw',\n      overflow: 'hidden'\n    }\n  }, playStart ? musicName : '未播放音乐'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    style: {\n      display: 'flex',\n      alignItems: 'center'\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    className: \"cursor\",\n    id: \"song-range\",\n    style: rangeStyle,\n    name: \"range\",\n    type: \"range\",\n    min: 0,\n    max: duration * 100,\n    value: currTime * 100,\n    onChange: changeProgress\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"label\", {\n    htmlFor: \"range\",\n    style: {\n      width: '17vw',\n      fontSize: '0.8rem',\n      marginLeft: '0.5vw'\n    }\n  }, `${currMin}:${currSec}/${durationMin}:${durationSec}`))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"cursor\",\n    id: \"volume\",\n    style: {\n      position: 'relative',\n      height: '100%',\n      width: '2rem'\n    },\n    onMouseOver: () => setShowVol(true),\n    onMouseLeave: () => setShowVol(false)\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    style: {\n      position: 'absolute',\n      top: '6vw'\n    },\n    onClick: changeMuted\n  }, !muted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"svg\", {\n    id: \"sound-on\",\n    className: \"icon\",\n    style: soundIconStyle,\n    viewBox: \"0 0 1024 1024\",\n    version: \"1.1\",\n    xmlns: \"http://www.w3.org/2000/svg\",\n    \"p-id\": \"553\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"path\", {\n    d: \"M143.36 737.28a81.92 81.92 0 0 1-81.92-81.92V368.64a81.92 81.92 0 0 1 81.92-81.92h163.84l171.6224-148.74624A81.92 81.92 0 0 1 614.4 199.8848v624.2304a81.92 81.92 0 0 1-135.5776 61.91104L307.2 737.28H143.36z m684.83072-515.4816A358.07232 358.07232 0 0 1 962.56 501.76a358.07232 358.07232 0 0 1-134.36928 279.9616 30.72 30.72 0 0 1-38.46144-47.9232 296.63232 296.63232 0 0 0 111.4112-232.0384c0-91.40224-41.472-175.9232-111.4112-232.0384a30.72 30.72 0 1 1 38.46144-47.9232z m-114.9952 121.18016C772.7104 382.09536 808.96 444.14976 808.96 512c0 67.85024-36.2496 129.90464-95.76448 169.02144a30.72 30.72 0 1 1-33.75104-51.32288C722.3296 601.4976 747.52 558.32576 747.52 512s-25.21088-89.51808-68.07552-117.69856a30.72 30.72 0 1 1 33.75104-51.32288z\",\n    \"p-id\": \"2559\"\n  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"svg\", {\n    id: \"sound-off\",\n    className: \"icon\",\n    style: soundIconStyle,\n    viewBox: \"0 0 1024 1024\",\n    version: \"1.1\",\n    xmlns: \"http://www.w3.org/2000/svg\",\n    \"p-id\": \"553\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"path\", {\n    d: \"M594.39104 146.2272A81.92 81.92 0 0 1 614.4 199.8848v624.2304a81.92 81.92 0 0 1-135.5776 61.91104L307.2 737.28H143.36a81.92 81.92 0 0 1-81.92-81.92V368.64a81.92 81.92 0 0 1 81.92-81.92h163.84l171.6224-148.74624a81.92 81.92 0 0 1 115.56864 8.25344zM953.5488 381.66528a30.72 30.72 0 0 1 0 43.4176l-86.85568 86.8352 86.8352 86.85568a30.72 30.72 0 1 1-43.4176 43.4176l-86.8352-86.8352-86.8352 86.8352a30.72 30.72 0 0 1-43.4176-43.4176l86.8352-86.8352-86.8352-86.8352a30.72 30.72 0 1 1 43.4176-43.43808l86.8352 86.8352 86.8352-86.8352a30.72 30.72 0 0 1 43.4176 0z\",\n    \"p-id\": \"2574\"\n  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    id: \"vol-range\",\n    className: \"cursor\",\n    type: \"range\",\n    style: volRangeStyle,\n    min: \"0\",\n    max: \"100\",\n    value: muted ? 0 : volume,\n    onChange: changeVolume\n  })));\n}\n\n//# sourceURL=webpack://local-music-player/./src/components/PlayBar.tsx?");
+
+/***/ }),
+
+/***/ "./src/components/PlayList.tsx":
+/*!*************************************!*\
+  !*** ./src/components/PlayList.tsx ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ PlayList)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../App */ \"./src/App.tsx\");\n/* harmony import */ var _SongItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SongItem */ \"./src/components/SongItem.tsx\");\n\n\n\nfunction PlayList() {\n  const {\n    playlist,\n    setPlaylist\n  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_App__WEBPACK_IMPORTED_MODULE_1__.PlaylistCtx);\n  const playlistStyle = {\n    marginTop: '1vh',\n    width: \"inherit\",\n    height: '50vh',\n    overflow: 'scroll',\n    display: 'flex',\n    flexDirection: 'column',\n    border: `${playlist.length ? 1 : 0}px solid goldenrod`\n  };\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"ol\", {\n    style: playlistStyle\n  }, playlist.map((song, idx) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SongItem__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    songname: song,\n    key: idx\n  })));\n}\n\n//# sourceURL=webpack://local-music-player/./src/components/PlayList.tsx?");
+
+/***/ }),
+
+/***/ "./src/components/SongItem.tsx":
+/*!*************************************!*\
+  !*** ./src/components/SongItem.tsx ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ SongItem)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../App */ \"./src/App.tsx\");\n\n\nfunction SongItem(prop) {\n  const [selected, setSelected] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n  const {\n    playlist,\n    setPlaylist,\n    startPlay\n  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_App__WEBPACK_IMPORTED_MODULE_1__.PlaylistCtx);\n  const onPlay = () => {\n    startPlay(prop.songname);\n  };\n  const onDelete = () => {\n    setPlaylist(playlist.filter(item => item !== prop.songname));\n  };\n  const buttonStyle = {\n    fontSize: \"1rem\",\n    visibility: selected ? 'visible' : 'hidden',\n    width: '100%',\n    display: 'flex',\n    position: 'absolute',\n    bottom: 0,\n    justifyContent: 'flex-end',\n    alignItems: 'center'\n  };\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"li\", {\n    onMouseEnter: () => setSelected(true),\n    onMouseDown: () => setSelected(true),\n    onMouseLeave: () => setSelected(false),\n    style: {\n      position: 'relative',\n      backgroundColor: selected ? 'gold' : 'transparent'\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", {\n    style: {}\n  }, prop.songname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", {\n    style: buttonStyle\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"svg\", {\n    className: \"cursor\",\n    style: {\n      height: '1rem',\n      width: '1rem',\n      margin: '0 auto -0.1rem 2vw'\n    },\n    viewBox: \"10 6 10 12\",\n    onClick: onPlay\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"path\", {\n    fill: \"limegreen\",\n    d: \"M8 5v14l11-7z\"\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"button\", {\n    className: \"cursor\",\n    style: {\n      fontSize: \"inherit\",\n      color: 'red'\n    },\n    onClick: onDelete\n  }, \"x\")));\n}\n\n//# sourceURL=webpack://local-music-player/./src/components/SongItem.tsx?");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./public/css/index.css":
+/*!********************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./public/css/index.css ***!
+  \********************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/getUrl.js */ \"./node_modules/css-loader/dist/runtime/getUrl.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__);\n// Imports\n\n\n\nvar ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../images/IMG_20211023_170546.jpg */ \"./public/images/IMG_20211023_170546.jpg\"), __webpack_require__.b);\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\nvar ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \":root {\\n  font-size: 3.1vw;\\n  background-image: url(\" + ___CSS_LOADER_URL_REPLACEMENT_0___ + \");\\n  margin: 0;\\n}\\n\\nbody {\\n  text-align: center;\\n}\\n\\nbody > h1 {\\n  color: goldenrod;\\n}\\n\\n.cursor:hover {\\n  cursor: pointer;\\n}\\n\\n@keyframes rotate {\\n  0% {\\n    transform: rotate(0);\\n  }\\n  50% {\\n    transform: rotate(180deg);\\n  }\\n  100% {\\n    transform: rotate(360deg);\\n  }\\n}\\n\\n.rotate-img {\\n  animation: rotate 10s linear infinite;\\n}\\n\\n#song-range[type=range]::-webkit-slider-thumb {\\n  appearance: none;/*清除系统默认样式*/\\n  height: 2.3vw;/*拖动块高度*/\\n  width: 2.3vw;/*拖动块宽度*/\\n  background: limegreen;/*拖动块背景*/\\n  border-radius: 50%; /*外观设置为圆形*/\\n  border: solid 1px #ddd; /*设置边框*/\\n}\\n\\n#vol-range[type=range]::-webkit-slider-thumb {\\n  appearance: none;/*清除系统默认样式*/\\n  height: 1.6vw;/*拖动块高度*/\\n  width: 1.6vw;/*拖动块宽度*/\\n  background: limegreen;/*拖动块背景*/\\n  border-radius: 50%; /*外观设置为圆形*/\\n  border: solid 1px #ddd; /*设置边框*/\\n}\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://local-music-player/./public/css/index.css?./node_modules/css-loader/dist/cjs.js");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\nmodule.exports = function (cssWithMappingToString) {\n  var list = [];\n\n  // return the list of modules as css string\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = \"\";\n      var needLayer = typeof item[5] !== \"undefined\";\n      if (item[4]) {\n        content += \"@supports (\".concat(item[4], \") {\");\n      }\n      if (item[2]) {\n        content += \"@media \".concat(item[2], \" {\");\n      }\n      if (needLayer) {\n        content += \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\");\n      }\n      content += cssWithMappingToString(item);\n      if (needLayer) {\n        content += \"}\";\n      }\n      if (item[2]) {\n        content += \"}\";\n      }\n      if (item[4]) {\n        content += \"}\";\n      }\n      return content;\n    }).join(\"\");\n  };\n\n  // import a list of modules into the list\n  list.i = function i(modules, media, dedupe, supports, layer) {\n    if (typeof modules === \"string\") {\n      modules = [[null, modules, undefined]];\n    }\n    var alreadyImportedModules = {};\n    if (dedupe) {\n      for (var k = 0; k < this.length; k++) {\n        var id = this[k][0];\n        if (id != null) {\n          alreadyImportedModules[id] = true;\n        }\n      }\n    }\n    for (var _k = 0; _k < modules.length; _k++) {\n      var item = [].concat(modules[_k]);\n      if (dedupe && alreadyImportedModules[item[0]]) {\n        continue;\n      }\n      if (typeof layer !== \"undefined\") {\n        if (typeof item[5] === \"undefined\") {\n          item[5] = layer;\n        } else {\n          item[1] = \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\").concat(item[1], \"}\");\n          item[5] = layer;\n        }\n      }\n      if (media) {\n        if (!item[2]) {\n          item[2] = media;\n        } else {\n          item[1] = \"@media \".concat(item[2], \" {\").concat(item[1], \"}\");\n          item[2] = media;\n        }\n      }\n      if (supports) {\n        if (!item[4]) {\n          item[4] = \"\".concat(supports);\n        } else {\n          item[1] = \"@supports (\".concat(item[4], \") {\").concat(item[1], \"}\");\n          item[4] = supports;\n        }\n      }\n      list.push(item);\n    }\n  };\n  return list;\n};\n\n//# sourceURL=webpack://local-music-player/./node_modules/css-loader/dist/runtime/api.js?");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+eval("\n\nmodule.exports = function (url, options) {\n  if (!options) {\n    options = {};\n  }\n  if (!url) {\n    return url;\n  }\n  url = String(url.__esModule ? url.default : url);\n\n  // If url is already wrapped in quotes, remove them\n  if (/^['\"].*['\"]$/.test(url)) {\n    url = url.slice(1, -1);\n  }\n  if (options.hash) {\n    url += options.hash;\n  }\n\n  // Should url be wrapped?\n  // See https://drafts.csswg.org/css-values-3/#urls\n  if (/[\"'() \\t\\n]|(%20)/.test(url) || options.needQuotes) {\n    return \"\\\"\".concat(url.replace(/\"/g, '\\\\\"').replace(/\\n/g, \"\\\\n\"), \"\\\"\");\n  }\n  return url;\n};\n\n//# sourceURL=webpack://local-music-player/./node_modules/css-loader/dist/runtime/getUrl.js?");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/noSourceMaps.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/noSourceMaps.js ***!
+  \**************************************************************/
+/***/ ((module) => {
+
+eval("\n\nmodule.exports = function (i) {\n  return i[1];\n};\n\n//# sourceURL=webpack://local-music-player/./node_modules/css-loader/dist/runtime/noSourceMaps.js?");
+
+/***/ }),
+
 /***/ "./node_modules/react-dom/cjs/react-dom.development.js":
 /*!*************************************************************!*\
   !*** ./node_modules/react-dom/cjs/react-dom.development.js ***!
@@ -80,23 +190,83 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 
 /***/ }),
 
-/***/ "./src/App.tsx":
-/*!*********************!*\
-  !*** ./src/App.tsx ***!
-  \*********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ "./public/css/index.css":
+/*!******************************!*\
+  !*** ./public/css/index.css ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("\nvar __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n/// <reference path=\"App.d.ts\" />\nconst react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst react_2 = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nfunction App() {\n    const [dirList, setDirList] = (0, react_2.useState)([]);\n    (0, react_2.useEffect)(() => {\n        pathsUtil.read().then(response => {\n            if (response.success) {\n                console.log(response.payload);\n                setDirList(response.payload);\n            }\n            else {\n                alert(response.message);\n            }\n        }, err => {\n            alert(err);\n        });\n    }, []);\n    const inputRef = (0, react_2.useRef)(null);\n    function addDirectory() {\n        var _a;\n        return __awaiter(this, void 0, void 0, function* () {\n            if (!((_a = inputRef.current) === null || _a === void 0 ? void 0 : _a.value)) {\n                alert(\"Input cannot be null!\");\n                return;\n            }\n            const response1 = yield pathsUtil.add(inputRef.current.value);\n            if (response1.success) {\n                const response2 = yield pathsUtil.read();\n                if (response2.success) {\n                    setDirList(response2.payload);\n                }\n                else {\n                    alert(response2.message);\n                }\n            }\n            else {\n                alert(response1.message);\n            }\n        });\n    }\n    return (react_1.default.createElement(\"div\", null,\n        react_1.default.createElement(\"h2\", null, \"Directories list:\"),\n        react_1.default.createElement(\"ol\", null, dirList.map((dir, idx) => react_1.default.createElement(\"li\", { key: idx }, dir.toString()))),\n        react_1.default.createElement(\"input\", { ref: inputRef }),\n        react_1.default.createElement(\"button\", { onClick: addDirectory }, \"Add to directory list\")));\n}\nexports[\"default\"] = App;\n\n\n//# sourceURL=webpack://local-music-player/./src/App.tsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ \"./node_modules/style-loader/dist/runtime/styleDomAPI.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ \"./node_modules/style-loader/dist/runtime/insertBySelector.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ \"./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ \"./node_modules/style-loader/dist/runtime/insertStyleElement.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ \"./node_modules/style-loader/dist/runtime/styleTagTransform.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _node_modules_css_loader_dist_cjs_js_index_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!./index.css */ \"./node_modules/css-loader/dist/cjs.js!./public/css/index.css\");\n\n      \n      \n      \n      \n      \n      \n      \n      \n      \n\nvar options = {};\n\noptions.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());\noptions.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());\n\n      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, \"head\");\n    \noptions.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());\noptions.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());\n\nvar update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_index_css__WEBPACK_IMPORTED_MODULE_6__[\"default\"], options);\n\n\n\n\n       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_index_css__WEBPACK_IMPORTED_MODULE_6__[\"default\"] && _node_modules_css_loader_dist_cjs_js_index_css__WEBPACK_IMPORTED_MODULE_6__[\"default\"].locals ? _node_modules_css_loader_dist_cjs_js_index_css__WEBPACK_IMPORTED_MODULE_6__[\"default\"].locals : undefined);\n\n\n//# sourceURL=webpack://local-music-player/./public/css/index.css?");
 
 /***/ }),
 
-/***/ "./src/React.tsx":
-/*!***********************!*\
-  !*** ./src/React.tsx ***!
-  \***********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/***/ ((module) => {
 
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst client_1 = __importDefault(__webpack_require__(/*! react-dom/client */ \"./node_modules/react-dom/client.js\"));\nconst App_1 = __importDefault(__webpack_require__(/*! ./App */ \"./src/App.tsx\"));\nconst root = client_1.default.createRoot(document.getElementById('app'));\nroot.render(react_1.default.createElement(react_1.default.StrictMode, null,\n    react_1.default.createElement(App_1.default, null)));\n\n\n//# sourceURL=webpack://local-music-player/./src/React.tsx?");
+eval("\n\nvar stylesInDOM = [];\nfunction getIndexByIdentifier(identifier) {\n  var result = -1;\n  for (var i = 0; i < stylesInDOM.length; i++) {\n    if (stylesInDOM[i].identifier === identifier) {\n      result = i;\n      break;\n    }\n  }\n  return result;\n}\nfunction modulesToDom(list, options) {\n  var idCountMap = {};\n  var identifiers = [];\n  for (var i = 0; i < list.length; i++) {\n    var item = list[i];\n    var id = options.base ? item[0] + options.base : item[0];\n    var count = idCountMap[id] || 0;\n    var identifier = \"\".concat(id, \" \").concat(count);\n    idCountMap[id] = count + 1;\n    var indexByIdentifier = getIndexByIdentifier(identifier);\n    var obj = {\n      css: item[1],\n      media: item[2],\n      sourceMap: item[3],\n      supports: item[4],\n      layer: item[5]\n    };\n    if (indexByIdentifier !== -1) {\n      stylesInDOM[indexByIdentifier].references++;\n      stylesInDOM[indexByIdentifier].updater(obj);\n    } else {\n      var updater = addElementStyle(obj, options);\n      options.byIndex = i;\n      stylesInDOM.splice(i, 0, {\n        identifier: identifier,\n        updater: updater,\n        references: 1\n      });\n    }\n    identifiers.push(identifier);\n  }\n  return identifiers;\n}\nfunction addElementStyle(obj, options) {\n  var api = options.domAPI(options);\n  api.update(obj);\n  var updater = function updater(newObj) {\n    if (newObj) {\n      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {\n        return;\n      }\n      api.update(obj = newObj);\n    } else {\n      api.remove();\n    }\n  };\n  return updater;\n}\nmodule.exports = function (list, options) {\n  options = options || {};\n  list = list || [];\n  var lastIdentifiers = modulesToDom(list, options);\n  return function update(newList) {\n    newList = newList || [];\n    for (var i = 0; i < lastIdentifiers.length; i++) {\n      var identifier = lastIdentifiers[i];\n      var index = getIndexByIdentifier(identifier);\n      stylesInDOM[index].references--;\n    }\n    var newLastIdentifiers = modulesToDom(newList, options);\n    for (var _i = 0; _i < lastIdentifiers.length; _i++) {\n      var _identifier = lastIdentifiers[_i];\n      var _index = getIndexByIdentifier(_identifier);\n      if (stylesInDOM[_index].references === 0) {\n        stylesInDOM[_index].updater();\n        stylesInDOM.splice(_index, 1);\n      }\n    }\n    lastIdentifiers = newLastIdentifiers;\n  };\n};\n\n//# sourceURL=webpack://local-music-player/./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js?");
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/insertBySelector.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/insertBySelector.js ***!
+  \********************************************************************/
+/***/ ((module) => {
+
+eval("\n\nvar memo = {};\n\n/* istanbul ignore next  */\nfunction getTarget(target) {\n  if (typeof memo[target] === \"undefined\") {\n    var styleTarget = document.querySelector(target);\n\n    // Special case to return head of iframe instead of iframe itself\n    if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {\n      try {\n        // This will throw an exception if access to iframe is blocked\n        // due to cross-origin restrictions\n        styleTarget = styleTarget.contentDocument.head;\n      } catch (e) {\n        // istanbul ignore next\n        styleTarget = null;\n      }\n    }\n    memo[target] = styleTarget;\n  }\n  return memo[target];\n}\n\n/* istanbul ignore next  */\nfunction insertBySelector(insert, style) {\n  var target = getTarget(insert);\n  if (!target) {\n    throw new Error(\"Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.\");\n  }\n  target.appendChild(style);\n}\nmodule.exports = insertBySelector;\n\n//# sourceURL=webpack://local-music-player/./node_modules/style-loader/dist/runtime/insertBySelector.js?");
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/insertStyleElement.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/insertStyleElement.js ***!
+  \**********************************************************************/
+/***/ ((module) => {
+
+eval("\n\n/* istanbul ignore next  */\nfunction insertStyleElement(options) {\n  var element = document.createElement(\"style\");\n  options.setAttributes(element, options.attributes);\n  options.insert(element, options.options);\n  return element;\n}\nmodule.exports = insertStyleElement;\n\n//# sourceURL=webpack://local-music-player/./node_modules/style-loader/dist/runtime/insertStyleElement.js?");
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js ***!
+  \**********************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("\n\n/* istanbul ignore next  */\nfunction setAttributesWithoutAttributes(styleElement) {\n  var nonce =  true ? __webpack_require__.nc : 0;\n  if (nonce) {\n    styleElement.setAttribute(\"nonce\", nonce);\n  }\n}\nmodule.exports = setAttributesWithoutAttributes;\n\n//# sourceURL=webpack://local-music-player/./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js?");
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/styleDomAPI.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/styleDomAPI.js ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+eval("\n\n/* istanbul ignore next  */\nfunction apply(styleElement, options, obj) {\n  var css = \"\";\n  if (obj.supports) {\n    css += \"@supports (\".concat(obj.supports, \") {\");\n  }\n  if (obj.media) {\n    css += \"@media \".concat(obj.media, \" {\");\n  }\n  var needLayer = typeof obj.layer !== \"undefined\";\n  if (needLayer) {\n    css += \"@layer\".concat(obj.layer.length > 0 ? \" \".concat(obj.layer) : \"\", \" {\");\n  }\n  css += obj.css;\n  if (needLayer) {\n    css += \"}\";\n  }\n  if (obj.media) {\n    css += \"}\";\n  }\n  if (obj.supports) {\n    css += \"}\";\n  }\n  var sourceMap = obj.sourceMap;\n  if (sourceMap && typeof btoa !== \"undefined\") {\n    css += \"\\n/*# sourceMappingURL=data:application/json;base64,\".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), \" */\");\n  }\n\n  // For old IE\n  /* istanbul ignore if  */\n  options.styleTagTransform(css, styleElement, options.options);\n}\nfunction removeStyleElement(styleElement) {\n  // istanbul ignore if\n  if (styleElement.parentNode === null) {\n    return false;\n  }\n  styleElement.parentNode.removeChild(styleElement);\n}\n\n/* istanbul ignore next  */\nfunction domAPI(options) {\n  if (typeof document === \"undefined\") {\n    return {\n      update: function update() {},\n      remove: function remove() {}\n    };\n  }\n  var styleElement = options.insertStyleElement(options);\n  return {\n    update: function update(obj) {\n      apply(styleElement, options, obj);\n    },\n    remove: function remove() {\n      removeStyleElement(styleElement);\n    }\n  };\n}\nmodule.exports = domAPI;\n\n//# sourceURL=webpack://local-music-player/./node_modules/style-loader/dist/runtime/styleDomAPI.js?");
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/styleTagTransform.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/styleTagTransform.js ***!
+  \*********************************************************************/
+/***/ ((module) => {
+
+eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElement) {\n  if (styleElement.styleSheet) {\n    styleElement.styleSheet.cssText = css;\n  } else {\n    while (styleElement.firstChild) {\n      styleElement.removeChild(styleElement.firstChild);\n    }\n    styleElement.appendChild(document.createTextNode(css));\n  }\n}\nmodule.exports = styleTagTransform;\n\n//# sourceURL=webpack://local-music-player/./node_modules/style-loader/dist/runtime/styleTagTransform.js?");
+
+/***/ }),
+
+/***/ "./public/images/IMG_20211023_170546.jpg":
+/*!***********************************************!*\
+  !*** ./public/images/IMG_20211023_170546.jpg ***!
+  \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"8adda1ab2a660411292a.jpg\";\n\n//# sourceURL=webpack://local-music-player/./public/images/IMG_20211023_170546.jpg?");
 
 /***/ })
 
@@ -120,7 +290,7 @@ eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
@@ -129,7 +299,62 @@ eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -139,11 +364,65 @@ eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"main": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		// no on chunks loaded
+/******/ 		
+/******/ 		// no jsonp function
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/nonce */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nc = undefined;
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/React.tsx");
 /******/ 	
 /******/ })()

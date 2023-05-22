@@ -1,4 +1,4 @@
-const { opendir } = require('node:fs/promises');
+const { opendir, readFile } = require('node:fs/promises');
 
 type ResponseFormat<T> = {
   success: boolean;
@@ -10,9 +10,19 @@ export type GlobalVarForm = {
   filePaths: string[];
 }
 
+export async function readMusicFile(filePath: string): Promise<Buffer> {
+  try {
+    const fileContent: Buffer = await readFile(filePath);
+    return fileContent;
+  } catch (err: any) {
+    console.error(err);
+    return Buffer.from([]);
+  }
+}
+
 export async function openPath(path: string): Promise<ResponseFormat<any[]>> {
   try {
-    const filenames = [];
+    const filenames: any[] = [];
     const dir = await opendir(path);
     for await (const file of dir) {
       filenames.push(file.name);
@@ -30,16 +40,17 @@ export async function openPath(path: string): Promise<ResponseFormat<any[]>> {
 }
 
 export function addPath(global_var: GlobalVarForm, newpath: string): ResponseFormat<number> {
-  if (global_var.filePaths.find(path => path === newpath)) {
+  const { filePaths } = global_var;
+  if (filePaths.find(path => path === newpath)) {
     return {
       success: false,
       message: 'Path already exists',
-      payload: global_var.filePaths.length,
+      payload: filePaths.length,
     }
   } else {
     return {
       success: true,
-      payload: global_var.filePaths.push(newpath),
+      payload: filePaths.push(newpath),
     }
   }
 }

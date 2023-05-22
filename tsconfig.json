@@ -14,15 +14,14 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "ES6",
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
-    "jsx": "react",
+    "jsx": "react"
   },
   "include": [
-    "src/App.d.ts",
-    "src/**/*",
+    "src/**/*"
   ]
 }

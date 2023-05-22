@@ -1,11 +1,13 @@
 // webpack.config.js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = [
   {
     mode: 'development',
     entry: './src/electron.ts',
     target: 'electron-main',
+    // watch: true,
     module: {
       rules: [{
         test: /\.ts$/,
@@ -25,6 +27,7 @@ module.exports = [
     mode: 'development',
     entry: './src/preload.ts',
     target: 'electron-preload',
+    // watch: true,
     module: {
       rules: [{
         test: /\.ts$/,
@@ -40,13 +43,38 @@ module.exports = [
   {
     mode: 'development',
     entry: './src/React.tsx',
-    target: 'electron-renderer',
-    // devtool: 'source-map',
-    module: { rules: [{
-      test: /\.ts(x?)$/,
-      include: /src/,
-      use: [{ loader: 'ts-loader' }]
-    }]},
+    devServer: {
+      port: 8080,
+      hot: true,
+    },
+    module: { rules: [
+      {
+        test: /\.css$/,
+        include: /css/,
+        use: ['style-loader', 'css-loader']
+      }, {
+        test: /\.(jsx|js|tsx|ts)$/,
+        include: /src/,
+        loader: "babel-loader",
+        options: {
+          presets: ['@babel/preset-typescript', '@babel/preset-react'],
+          plugins: ['@babel/plugin-transform-typescript']
+        }
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        include: /src/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192, // 图片大小低于8KB时，转为base64编码
+              name: 'images/[name].[hash:8].[ext]', // 输出文件名格式
+            },
+          },
+        ],
+      },
+    ]},
     output: {
       path: __dirname + '/dist',
       filename: 'React.js'
@@ -56,8 +84,8 @@ module.exports = [
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './index.html',
-      })
+        template: './public/index.html',
+      }),
     ],
   },
 ];

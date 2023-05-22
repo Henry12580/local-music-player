@@ -10,3 +10,6 @@ declare var pathsUtil: {
   open: (path: string) => Promise<ResponseFormat<any[]>>;
   clear: () => Promise<ResponseFormat<undefined>>;
 } 
+declare var fileUtil: {
+  read: (path: string) => Promise<ResponseFormat<Blob>>;
+}

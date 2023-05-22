@@ -1,0 +1,51 @@
+:root {
+  font-size: 3.1vw;
+  background-image: url(../images/IMG_20211023_170546.jpg);
+  margin: 0;
+}
+
+body {
+  text-align: center;
+}
+
+body > h1 {
+  color: goldenrod;
+}
+
+.cursor:hover {
+  cursor: pointer;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-img {
+  animation: rotate 10s linear infinite;
+}
+
+#song-range[type=range]::-webkit-slider-thumb {
+  appearance: none;/*清除系统默认样式*/
+  height: 2.3vw;/*拖动块高度*/
+  width: 2.3vw;/*拖动块宽度*/
+  background: limegreen;/*拖动块背景*/
+  border-radius: 50%; /*外观设置为圆形*/
+  border: solid 1px #ddd; /*设置边框*/
+}
+
+#vol-range[type=range]::-webkit-slider-thumb {
+  appearance: none;/*清除系统默认样式*/
+  height: 1.6vw;/*拖动块高度*/
+  width: 1.6vw;/*拖动块宽度*/
+  background: limegreen;/*拖动块背景*/
+  border-radius: 50%; /*外观设置为圆形*/
+  border: solid 1px #ddd; /*设置边框*/
+}

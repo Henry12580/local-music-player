@@ -1,53 +1,60 @@
-/// <reference path="App.d.ts" />
-import React from 'react';
-import {useState, useEffect, useRef} from 'react';
+/// <reference path="components/Direct.d.ts" />
+import Directory from "./components/Directory";
+import React, { useState } from 'react'
+import PlayList from './components/PlayList';
+import PlayBar from "./components/PlayBar";
+
+type PlaylistCtxType = {
+  playlist: string[];
+  curdir: string,
+  setCurdir: Function,
+  setPlaylist: Function;
+  playAll: Function;
+  startPlay: Function;
+}
+
+export const PlaylistCtx = React.createContext<PlaylistCtxType>({
+  playlist: [],
+  curdir: "",
+  setCurdir: () => {},
+  setPlaylist: () => {},
+  playAll: () => {},
+  startPlay: () => {},
+});
 
 export default function App() {
-  const [dirList, setDirList] = useState<string[]>([]);
+  const [playlist, setPlaylist] = useState([]);
+  const [musicName, setMusicName] = useState("");
+  const [curdir, setCurdir] = useState("");
+  const [musicSrc, setMusicSrc] = useState<string>("");
+  const [playStart, setPlayStart] = useState<Boolean>(false);
+  const [musicCoverSrc, setMusicCoverSrc] = useState("../images/music_cover.jpg");
 
-  useEffect( () => {
-    pathsUtil.read().then( response => {
-      if (response.success) {
-        console.log(response.payload);
-        setDirList(response.payload);
-      } else {
-        alert(response.message);
-      }
-    }, err => {
-      alert(err);
-    });
-  }, []);
+  function playAll(dir: string) {
+    setCurdir(dir);
+    playlist.forEach( song => startPlay(song))
+  }
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  async function addDirectory() {
-    if (!inputRef.current?.value) {
-      alert("Input cannot be null!");
-      return;
-    }
-    const response1: ResponseFormat<number> = await pathsUtil.add(inputRef.current.value);
-    if (response1.success) {
-      const response2: ResponseFormat<string[]> = await pathsUtil.read();
-      if (response2.success) {
-        setDirList(response2.payload);
-      } else {
-        alert(response2.message);
-      }
+  async function startPlay(song: string, musicCoverSrc?: string) {
+    setMusicName(song);
+    const songPath = curdir.endsWith('/') ? curdir + song : curdir + '/' + song;
+    const readFileResp = await fileUtil.read(songPath);
+    if (readFileResp.success) {
+      setMusicSrc(URL.createObjectURL(readFileResp.payload));
+      if (musicCoverSrc) setMusicCoverSrc(musicCoverSrc);
+      setPlayStart(true);
     } else {
-      alert(response1.message);
+      console.error(readFileResp.message);
     }
   }
 
   return (
-    <div>
-      <h2>Directories list:</h2>
-      <ol>
-        {
-          dirList.map( (dir: string, idx: number) => <li key={idx}>{dir.toString()}</li> )
-        }
-      </ol>
-      <input ref={inputRef}></input>
-      <button onClick={addDirectory}>Add to directory list</button>
+    <div style={{margin: "auto auto", width: "80vw", display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <PlaylistCtx.Provider value={{curdir, setCurdir, playlist, setPlaylist, playAll, startPlay}}>
+        <Directory />
+        <PlayList />
+        <PlayBar musicName={musicName} musicSrc={musicSrc} playStart={playStart} musicCoverSrc={musicCoverSrc} />
+      </PlaylistCtx.Provider>
     </div>
   )
 }
