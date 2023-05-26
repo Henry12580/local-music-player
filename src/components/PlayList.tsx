@@ -3,11 +3,11 @@ import { PlaylistCtx } from "../App";
 import SongItem from "./SongItem";
 
 export default function PlayList() {
-  const {playlist, setPlaylist} = useContext(PlaylistCtx);
+  const {playlist, currPlay, dirList} = useContext(PlaylistCtx);
   const playlistStyle: CSSProperties = {
-    marginTop: '1vh', 
+    marginTop: '2vw', 
     width: "inherit",
-    height: '50vh', 
+    height: `calc(100vh - 48vw - ${dirList.length * 1.4}rem)`, 
     overflow: 'scroll',
     display: 'flex', 
     flexDirection: 'column', 
@@ -15,7 +15,7 @@ export default function PlayList() {
   };
   return (
     <ol style={playlistStyle}>
-      {playlist.map( (song: string, idx: number) => <SongItem songname={song} key={idx} />)}
+      {playlist.map( (song: string, idx: number) => <SongItem name={song} key={idx} index={idx} playing={currPlay === song}/>)}
     </ol>
   )
 }

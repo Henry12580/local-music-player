@@ -10,6 +10,7 @@ body {
 
 body > h1 {
   color: goldenrod;
+  margin-bottom: 2vw;
 }
 
 .cursor:hover {
@@ -48,4 +49,23 @@ body > h1 {
   background: limegreen;/*拖动块背景*/
   border-radius: 50%; /*外观设置为圆形*/
   border: solid 1px #ddd; /*设置边框*/
+}
+
+.play-controls {
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  bottom: 0.5vw;
+}
+
+.last-next {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+.play-seq {
+  width: 1.1rem;
+  height: 1.1rem;
 }

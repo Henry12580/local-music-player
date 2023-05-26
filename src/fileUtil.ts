@@ -22,10 +22,14 @@ export async function readMusicFile(filePath: string): Promise<Buffer> {
 
 export async function openPath(path: string): Promise<ResponseFormat<any[]>> {
   try {
-    const filenames: any[] = [];
+    const filenames: string[] = [];
     const dir = await opendir(path);
     for await (const file of dir) {
-      filenames.push(file.name);
+      if (file.name.substring(0, 2) === '._') {
+        filenames.push(file.name.substring(2));
+      } else {
+        filenames.push(file.name);
+      }
     }
     return {
       success: true,

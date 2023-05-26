@@ -1,16 +1,20 @@
 /// <reference path="Direct.d.ts" />
-import React from 'react';
+import React, { useContext } from 'react';
 import {useState, useEffect, useRef} from 'react';
 import DirItem from './DirItem';
+import { PlaylistCtx } from '../App';
 
 export default function Directory() {
-  const [dirList, setDirList] = useState<string[]>([]);
+  const {setCurdir, dirList, setDirList} = useContext(PlaylistCtx);
 
   useEffect( () => {
     pathsUtil.read().then( response => {
       if (response.success) {
-        // console.log(response.payload);
-        setDirList(response.payload);
+        const dirlist = response.payload;
+        setDirList(dirlist);
+        if (dirlist.length) {
+          setCurdir(dirlist[0])
+        }
       } else {
         alert(response.message);
       }

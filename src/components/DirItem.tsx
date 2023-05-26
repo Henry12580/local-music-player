@@ -6,11 +6,10 @@ type DirItemPropType = {
   updateDirList: Function;
 };
 
-const musicFileSuffixs: string[] = [".flac", ".mp3", ".wmc", ".wav"];
 
 export default function DirItem(prop: DirItemPropType) {
   const [selected, setSelected] = useState(false);
-  const {setCurdir, playlist, setPlaylist, playAll} = useContext(PlaylistCtx);
+  const {setCurdir, playAll} = useContext(PlaylistCtx);
   const onDelete = async () => {
     const deleteResp = await pathsUtil.delete([prop.dir]);
     if (deleteResp.success) {
@@ -19,19 +18,11 @@ export default function DirItem(prop: DirItemPropType) {
       console.error(deleteResp.message);
     }
   }
-  function onRead() {
-    pathsUtil.open(prop.dir).then(res => {
-      if (res.success) {
-        setCurdir(prop.dir);
-        setPlaylist(res.payload.filter( (filename: string) => musicFileSuffixs.some( suffix => filename.endsWith(suffix))));
-      } else {
-        console.error(res.message);
-      }
-    })
-  }
+
   function onPlay() {
     playAll(prop.dir);
   }
+
   const buttonStyle: CSSProperties = {
     fontSize: "1rem", 
     visibility: selected ? 'visible' : 'hidden', 
@@ -42,6 +33,10 @@ export default function DirItem(prop: DirItemPropType) {
     justifyContent: 'flex-end',
     alignItems: 'center',
   };
+
+  function onRead() {
+    setCurdir(prop.dir);
+  }
 
   return (
     <div

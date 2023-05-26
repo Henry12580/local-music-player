@@ -6,8 +6,8 @@ const path = require('path');
 const createWindow = () => {
   // Every instance of BrowserWindow creates an application window
   const win = new BrowserWindow({
-    width: 1000,
-    height: 600,
+    width: 520,
+    height: 650,
     webPreferences: {
       // webSecurity: false,
       preload: path.join(__dirname, 'preload.js'),
@@ -15,10 +15,10 @@ const createWindow = () => {
       // nodeIntegration: true,
     }
   })
-  win.webContents.openDevTools();
-  win.loadURL('http://localhost:8080')
-  // win.loadFile('index.html');
-  win.setFullScreen(true);
+  // win.webContents.openDevTools();
+  // win.loadURL('http://localhost:8080')
+  win.loadFile('index.html');
+  // win.setFullScreen(true);
 };
 
 var global_var: GlobalVarForm = {
