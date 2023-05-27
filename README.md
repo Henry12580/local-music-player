@@ -30,4 +30,5 @@
 
 ## 项目踩坑
 
-- css transform会改变元素的z-index
+- css transform会改变元素的z-index。
+- 用electron-forge打包的js项目，js里面的静态资源路径不能是相对路径，最好是同级路径。
