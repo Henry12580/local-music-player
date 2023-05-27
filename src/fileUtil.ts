@@ -25,9 +25,7 @@ export async function openPath(path: string): Promise<ResponseFormat<any[]>> {
     const filenames: string[] = [];
     const dir = await opendir(path);
     for await (const file of dir) {
-      if (file.name.substring(0, 2) === '._') {
-        filenames.push(file.name.substring(2));
-      } else {
+      if (file.name.substring(0, 2) !== '._') {
         filenames.push(file.name);
       }
     }

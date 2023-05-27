@@ -15,9 +15,9 @@ const createWindow = () => {
       // nodeIntegration: true,
     }
   })
-  // win.webContents.openDevTools();
-  // win.loadURL('http://localhost:8080')
-  win.loadFile('index.html');
+  win.webContents.openDevTools();
+  win.loadURL('http://localhost:8080')
+  // win.loadFile('index.html');
   // win.setFullScreen(true);
 };
 

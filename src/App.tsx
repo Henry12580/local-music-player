@@ -58,7 +58,7 @@ export default function App() {
   const [playStart, setPlayStart] = useState<Boolean>(false); // 是否播放
   const [playSeq, setPlaySeq] = useState<0|1|2|3>(0); // 播放顺序
   const [dirList, setDirList] = useState<string[]>([]);
-  const [musicCoverSrc, setMusicCoverSrc] = useState("../public/images/music_cover.jpg"); // 音乐封面
+  const [musicCoverSrc, setMusicCoverSrc] = useState("music_cover.jpg"); // 音乐封面
 
   const ctxValue = {dirList, setDirList, playLast, curdir, setCurdir, playlist, readSonglist, setPlaylist, playAll, startPlay, currPlay, playSeq, setPlaySeq, playNext};
 

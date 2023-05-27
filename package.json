@@ -4,11 +4,12 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
-    "serve": "webpack serve --config ./webpack.config.js",
+    "serve": "webpack serve --config ./webpack.dev.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-dev": "webpack --config ./webpack.dev.config.js",
     "build-prod": "webpack --config ./webpack.prod.config.js",
-    "start": "electron ./dist/electron.js",
+    "start-dev": "npm run build-dev && electron ./dist/electron.js",
+    "start-prod": "npm run build-prod && electron ./dist/electron.js",
     "start-hot": "concurrently 'npm run start-main' 'npm run start-renderer'",
     "start-main": "webpack --config ./webpack.main.config.js --watch",
     "start-renderer": "webpack-dev-server --config ./webpack.renderer.config.js"
