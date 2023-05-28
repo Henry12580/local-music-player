@@ -128,6 +128,7 @@ export default function App() {
   }
 
   async function startPlay(musicName: string, musicIdx: number, musicCoverSrc?: string) {
+    musicSrc && URL.revokeObjectURL(musicSrc);
     setCurrPlay(musicName);
     setMusicIdx(musicIdx);
     const songPath = curdir.endsWith('/') ? curdir + musicName : curdir + '/' + musicName;
