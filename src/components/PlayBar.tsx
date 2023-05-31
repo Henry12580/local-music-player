@@ -65,8 +65,8 @@ export default function PlayBar(props: PlayBarProps) {
   useEffect( () => {
     audio = new Audio();
     window.onkeydown = function(event) {
-      event.preventDefault();
-      if (event.code === 'Space') {
+      if (!(event.target instanceof HTMLInputElement) && event.code === 'Space') {
+        event.preventDefault();
         if (audio.paused) {
           audio.play();
         } else {
