@@ -46,7 +46,6 @@ export default function PlayBar(props: PlayBarProps) {
     [showVol, setShowVol] = useState(false),
     [volume, setVolume] = useState(50),
     [muted, setMuted] = useState(false),
-    [showPause, setShowPause] = useState(false),
     {playSeq, setPlaySeq, playNext, playLast} = useContext(PlaylistCtx); 
 
   function nextPlay() {
@@ -65,6 +64,16 @@ export default function PlayBar(props: PlayBarProps) {
 
   useEffect( () => {
     audio = new Audio();
+    window.onkeydown = function(event) {
+      event.preventDefault();
+      if (event.code === 'Space') {
+        if (audio.paused) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      }
+    }
   }, []);
 
   useEffect(onSrcChange, [musicSrc]);
@@ -86,11 +95,12 @@ export default function PlayBar(props: PlayBarProps) {
       setDurationMin(dm < 10 ? '0' + dm : ''+dm);
       setDurationSec(ds < 10 ? '0' + ds : ''+ds);
       if (playStart) {
-        setPlaying(true);
         audio.play();
         interval = setInterval(updateProgress, 200);
       }
     };
+    audio.onplay = () => setPlaying(true);
+    audio.onpause = () => setPlaying(false);
     audio.onended = onPlayEnded;
   }
 
@@ -171,7 +181,6 @@ export default function PlayBar(props: PlayBarProps) {
     if (audio && musicSrc) {
       if (playing) {
         audio.pause();
-        setPlaying(false);
         if (interval) {
           clearInterval(interval);
           interval = null;
@@ -179,7 +188,6 @@ export default function PlayBar(props: PlayBarProps) {
       }
       else {
         audio.play();
-        setPlaying(true);
         if (!interval) {
           interval = setInterval(updateProgress, 200);
         }
@@ -199,9 +207,8 @@ export default function PlayBar(props: PlayBarProps) {
     <div style={playbarStyle}>
 
       <div 
+        id='music-cover'
         style={{width: '13vw', height: '13vw', position: 'relative'}}
-        onMouseEnter={() => setShowPause(true)}
-        onMouseLeave={() => setShowPause(false)}
       >
         {!playing ? 
           <svg className="cursor" 
@@ -211,14 +218,14 @@ export default function PlayBar(props: PlayBarProps) {
           >
             <path fill="limegreen" d="M8 5v14l11-7z"/>
           </svg> : 
-          playing && showPause ? 
           <svg className="cursor" 
+            id='pause'
             style={{position: 'absolute', height: '2rem', width: '2rem', left: '3.4vw', top: '3.7vw', zIndex: '10'}} 
             viewBox="0 0 1024 1024" 
             onClick={changePlaying}
           >
             <path d="M640 832V192h128v640h-128zM256 192h128v640H256V192z" fill="limegreen" p-id="5126"></path>
-          </svg> : null
+          </svg>
         }
         <img
           src={musicCoverSrc} 

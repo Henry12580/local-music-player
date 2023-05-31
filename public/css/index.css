@@ -83,3 +83,30 @@ body > h1 {
   background-color: rgb(225, 225, 225);
   border: none;
 }
+
+#song-item:hover {
+  background-color: gold;
+}
+
+#song-item:hover .button {
+  visibility: visible;
+}
+
+#song-item .button {
+  font-size: 1rem; 
+  visibility: hidden;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#pause {
+  visibility: hidden;
+}
+
+#music-cover:hover #pause {
+  visibility: visible;
+}

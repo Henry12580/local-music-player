@@ -7,7 +7,6 @@ type songItemType = {
   playing: boolean;
 }
 export default function SongItem(prop: songItemType) {
-  const [selected, setSelected] = useState(false);
   const {playlist, setPlaylist, startPlay} = useContext(PlaylistCtx);
   const songItemRef = useRef<HTMLLIElement>(null);
   const onPlay = () => {
@@ -25,27 +24,14 @@ export default function SongItem(prop: songItemType) {
     setPlaylist(newPlaylist);
   }
 
-  const buttonStyle: CSSProperties = {
-    fontSize: "1rem", 
-    visibility: selected ? 'visible' : 'hidden', 
-    width: '100%',
-    display: 'flex',
-    position: 'absolute',
-    bottom: 0,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  }; 
-
   return (
     <li
+      id="song-item"
       ref={songItemRef}
-      onMouseEnter={() => setSelected(true)} 
-      onMouseDown={() => setSelected(true)}
-      onMouseLeave={() => setSelected(false)}
-      style={{position: 'relative', backgroundColor: selected ? 'gold' : 'transparent'}}
+      style={{position: 'relative'}}
     >
       <span style={prop.playing ? {color: 'limegreen', fontWeight: 'bold'} : {}}>{prop.name}</span>
-      <span style={buttonStyle}>
+      <span className='button'>
         <svg className="cursor" style={{height: '1rem', width: '1rem', margin: '0 auto -0.1rem 2vw' }} viewBox="10 6 10 12" onClick={onPlay}>
           <path fill="limegreen" d="M8 5v14l11-7z"/>
         </svg>
